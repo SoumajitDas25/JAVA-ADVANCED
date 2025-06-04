@@ -40,11 +40,13 @@ class MyFrame extends Frame
         button.setBounds(30,100,80,30); //sets position of button in the container(frame) and also sets the width & height
         setSize(500,500); //sets the size of the frame
         setLayout(null); //sets the layout of the frame, it accepts a layout( by passing null, it uses default layout of awt)
-        setVisible(true); //by default, its false, so we need to pass true to make it visible
         add(button); //adds the button to the frame
 
         //Note: for every frame, we must set its size, layout & visibility.
         //By default, the close icon on the frame doesn't responds, it needs to be attached with a WindowListener to handle the windowClosing event.
+
+        setVisible(true); //by default, its false, so we need to pass true to make it visible
+        //always add components first & then set the frame to be visible at last.
     }
 }
 
