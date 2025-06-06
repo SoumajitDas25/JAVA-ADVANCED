@@ -1,11 +1,10 @@
 package GUI.Swing;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-import java.awt.*;
 
 //Java Swing is also used to create window based application just like awt.
 //It is built on top of awt api
+//javax.swing package is used
 //Difference btw AWT & Swing:
 //1. AWT Components are platform-dependent whereas Swing Component are platform independent.
 //2. AWT Components are heavyweight whereas Swing Components are lightweight.
