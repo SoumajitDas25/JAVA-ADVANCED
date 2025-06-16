@@ -44,17 +44,21 @@ public class JDBCBasics
             System.out.println("Driver not found!");
         }
 
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet result = null;
+
         try
         {
             //Create Connection
-            Connection connection = DriverManager.getConnection(url,username,password); //this method will return an object of an implementation class of Connection interface which is defined in the driver files(different RDBMS drivers will have their own implementation class of this interface whose object will be returned by this method)
+            connection = DriverManager.getConnection(url,username,password); //this method will return an object of an implementation class of Connection interface which is defined in the driver files(different RDBMS drivers will have their own implementation class of this interface whose object will be returned by this method)
 
             //Create Statement
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             String query1 = "SELECT * FROM Student"; //SQL Query
 
             //Execute SQL Query
-            ResultSet result = statement.executeQuery(query1); //it will return an object of ResultSet Implementation class on which we will perform our operations
+            result = statement.executeQuery(query1); //it will return an object of ResultSet Implementation class on which we will perform our operations
             //executeQuery() is used when we want to retrieve data & executeUpdate() is used when we want to insert,update,delete data
 
             //Process Result
@@ -71,6 +75,39 @@ public class JDBCBasics
         catch (SQLException e)
         {
             System.out.println("SQL Exception: "+e.getMessage());
+        }
+
+        //Closing all instances(good practice)
+        finally
+        {
+            //always close in the reverse order of creation
+            try
+            {
+                if(result!=null)
+                    result.close();
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                if(statement!=null)
+                    statement.close();
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+            try
+            {
+                if(connection!=null)
+                    connection.close();
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }
